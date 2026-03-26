@@ -1,348 +1,430 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Audio samples from EmotionDiffGAN-TTS"</title>
-    <meta charset="UTF-8">
-    <title>EmotionDiffGAN-TTS</title>
-    <style>
-        red {color: red}
-        audio {width: 250px}
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EmotionDiffGAN-TTS Samples</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Jost:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:        #0a0a0c;
+      --surface:   #111116;
+      --surface2:  #18181f;
+      --border:    #2a2a35;
+      --accent:    #5eb4ff;
+      --accent-dim:#2a5a8a;
+      --text:      #d8d8e8;
+      --text-dim:  #a0a0b5;
+      --white:     #f0f0f5;
+      --img-border: 2px solid rgba(220, 220, 255, 0.25);
+      --img-shadow: 0 0 0 1px rgba(94,180,255,0.08), 0 4px 24px rgba(0,0,0,0.5);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      padding: 0 1rem 4rem;
+    }
+
+    /* ---- layout ---- */
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* ---- header ---- */
+    header {
+      border-bottom: 1px solid var(--border);
+      padding: 3.5rem 0 2rem;
+      margin-bottom: 2.5rem;
+    }
+
+    header h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.01em;
+      line-height: 1.15;
+    }
+
+    header h1 span {
+      color: var(--accent);
+    }
+
+    /* ---- body text ---- */
+    .intro {
+      font-size: 0.97rem;
+      color: var(--text-dim);
+      max-width: 660px;
+      margin-bottom: 1.2rem;
+    }
+
+    .intro a, a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid var(--accent-dim);
+      transition: border-color 0.15s;
+    }
+
+    .intro a:hover, a:hover {
+      border-color: var(--accent);
+    }
+
+    /* ---- TOC ---- */
+    .toc {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      padding: 1.2rem 1.6rem;
+      margin: 2rem 0 2.5rem;
+      display: inline-block;
+      min-width: 280px;
+    }
+
+    .toc h2 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.8rem;
+    }
+
+    .toc ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .toc ul li {
+      font-size: 0.9rem;
+      padding: 0.2rem 0;
+      color: var(--text-dim);
+    }
+
+    .toc ul li::before {
+      content: '/ ';
+      color: var(--accent-dim);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .toc ul li a {
+      color: var(--text);
+      border-bottom: none;
+    }
+
+    .toc ul li a:hover {
+      color: var(--accent);
+    }
+
+    /* ---- sections ---- */
+    section {
+      margin-top: 3rem;
+    }
+
+    section h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 0.4rem;
+    }
+
+    section h3 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      font-weight: 400;
+      margin-bottom: 1.2rem;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0.6rem 0 1.4rem;
+    }
+
+    /* ---- images ---- */
+    .figure-wrap {
+      display: inline-block;
+      border: var(--img-border);
+      box-shadow: var(--img-shadow);
+      background: #1a1a22;
+      padding: 4px;
+      margin: 0.5rem 0 1rem;
+    }
+
+    .figure-wrap img {
+      display: block;
+      width: 100%;
+      max-width: 592px;
+      height: auto;
+    }
+
+    /* ---- audio tables ---- */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.1s;
+    }
+
+    tbody tr:nth-child(even) {
+      background: var(--surface);
+    }
+
+    tbody tr:nth-child(odd) {
+      background: var(--surface2);
+    }
+
+    tbody tr:hover {
+      background: #1f1f2e;
+    }
+
+    td {
+      padding: 0.55rem 0.8rem;
+      vertical-align: middle;
+    }
+
+    td:first-child {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      white-space: nowrap;
+      width: 140px;
+      letter-spacing: 0.03em;
+    }
+
+    tbody tr:first-child td:first-child,
+    tbody tr:nth-child(2) td:first-child {
+      color: var(--accent);
+    }
+
+    audio {
+      width: 260px;
+      height: 32px;
+      accent-color: var(--accent);
+      filter: invert(1) hue-rotate(180deg) brightness(0.85);
+    }
+
+    /* override filter for chromium native dark */
+    @media (prefers-color-scheme: dark) {
+      audio { filter: none; accent-color: var(--accent); }
+    }
+
+    /* ---- scroll anchor offset ---- */
+    [id] { scroll-margin-top: 1.5rem; }
+  </style>
 </head>
 <body>
-<article>
-    <header>
-        <h1>EmotionDiffGAN-TTS Samples</h1>
-    </header>
-</article>
+<div class="container">
 
-<!--    <p><b>Paper:</b> <a href="">arXiv</a></p>-->
-<!--    <p><b>Authors</b>: </p>-->
+  <header>
+    <h1>Emotion<span>DiffGAN</span>-TTS</h1>
+  </header>
 
-<div>
-    <p>This model presents a novel approach to emotional text-to-speech synthesis,
+  <p class="intro">
+    This model presents a novel approach to emotional text-to-speech synthesis,
     leveraging the strengths of <a href="https://arxiv.org/abs/2010.05646">DiffGAN-TTS</a> while incorporating fine-grained emotional control.
     The base model is modified to accept emotion vectors as input, conditioning both the Variance predictor
     within the generator and the convolutional blocks of the discriminator. These emotion vectors are derived
     from a pre-trained model capable of predicting sentiment and arousal from speech. This allows the model
     to generate speech with a wide range of emotional expressions.
-    </p>
-</div>
+  </p>
+  <p class="intro">
+    Source available on <a href="https://github.com/Bjacobwork/EmotionDiffGAN-TTS">GitHub</a>.
+  </p>
 
-<p>
-    This project is available on <a href="https://github.com/Bjacobwork/EmotionDiffGAN-TTS">github</a>.
-</p>
-<br><br>
-<p class="toc_title"><h2>Contents</h2></p>
-
-<hr>
-<div id="toc_container">
+  <nav class="toc">
+    <h2>Contents</h2>
     <ul>
-        <li><a href="#sampled_emotions">Sampled Emotions</a></li>
-        <li><a href="#all_emotions">Combined Dataset Emotion Heatmap</a></li>
-        <li><a href="#eemotion">Multi Emotion Dataset (EEmotion)</a></li>
-        <li><a href="#ljspeech">Single Emotion Dataset (LJSpeech)</a></li>
+      <li><a href="#sampled_emotions">Sampled Emotions</a></li>
+      <li><a href="#all_emotions">Combined Dataset Emotion Heatmap</a></li>
+      <li><a href="#eemotion">Multi Emotion Dataset (EEmotion)</a></li>
+      <li><a href="#ljspeech">Single Emotion Dataset (LJSpeech)</a></li>
     </ul>
-</div>
-<br>
-<div>
-    <p></p>
-</div>
+  </nav>
 
-
-<div id="sampled_emotions">
-    <a name="ee"><h2>Sampled Emotions</h2></a>
+  <!-- Sampled Emotions -->
+  <section id="sampled_emotions">
+    <h2>Sampled Emotions</h2>
     <hr>
-    <img src="static/Figure_1.png", style="width: 600px;">
-</div>
-<br><br>
-<div id="all_emotions">
-    <a name="ee"><h2>Combined Dataset Emotion Heatmap</h2></a>
+    <div class="figure-wrap">
+      <img src="static/Figure_1.png" alt="Sampled Emotions plot">
+    </div>
+  </section>
+
+  <!-- Heatmap -->
+  <section id="all_emotions">
+    <h2>Combined Dataset Emotion Heatmap</h2>
     <hr>
-    <img src="static/Figure_2.png", style="width: 600px;">
-</div>
+    <div class="figure-wrap">
+      <img src="static/Figure_2.png" alt="Combined Dataset Emotion Heatmap">
+    </div>
+  </section>
 
-
-<p>&nbsp;</p>
-
-<div>
-    <a name="eemotion"><h2>Multi Emotion Dataset (EEmotion)</h2>
-
-    <h3>"i had to have it."</h3></a>
+  <!-- EEmotion -->
+  <section id="eemotion">
+    <h2>Multi Emotion Dataset (EEmotion)</h2>
+    <h3>"i had to have it."</h3>
     <hr>
     <table>
-        <tbody>
+      <tbody>
         <tr>
-            <td nowrap width="160">Ground Truth</td>
-            <td>
-                <audio controls="" preload="none">
-                    <source src="static/EEmotion/Content_11_5.wav">
-                </audio>
-            </td>
+          <td>Ground Truth</td>
+          <td><audio controls preload="none"><source src="static/EEmotion/Content_11_5.wav"></audio></td>
         </tr>
         <tr>
-            <td nowrap>Teacher Forced
-            <td>
-                <audio controls="" preload="none">
-                    <source src="static/EEmotion/Content_11_5_teacher_forced.wav">
-                </audio>
-            </td>
+          <td>Teacher Forced</td>
+          <td><audio controls preload="none"><source src="static/EEmotion/Content_11_5_teacher_forced.wav"></audio></td>
         </tr>
         <tr>
-            <td nowrap>Alarmed
-            <td>
-                <audio controls="" preload="none">
-                    <source src="static/EEmotion/i had to have it._EEmotion_alarmed.wav">
-                </audio>
-            </td>
+          <td>Alarmed</td>
+          <td><audio controls preload="none"><source src="static/EEmotion/i had to have it._EEmotion_alarmed.wav"></audio></td>
         </tr>
         <tr>
-            <td nowrap>Amused
-            <td>
-                <audio controls="" preload="none">
-                    <source src="static/EEmotion/i had to have it._EEmotion_amused.wav">
-                </audio>
-            </td>
+          <td>Amused</td>
+          <td><audio controls preload="none"><source src="static/EEmotion/i had to have it._EEmotion_amused.wav"></audio></td>
         </tr>
         <tr>
-            <td nowrap>Angry
-            <td>
-                <audio controls="" preload="none">
-                    <source src="static/EEmotion/i had to have it._EEmotion_angry.wav">
-                </audio>
-            </td>
+          <td>Angry</td>
+          <td><audio controls preload="none"><source src="static/EEmotion/i had to have it._EEmotion_angry.wav"></audio></td>
         </tr>
         <tr>
-            <td nowrap>Annoyed
-            <td>
-                <audio controls="" preload="none">
-                    <source src="static/EEmotion/i had to have it._EEmotion_annoyed.wav">
-                </audio>
-            </td>
+          <td>Annoyed</td>
+          <td><audio controls preload="none"><source src="static/EEmotion/i had to have it._EEmotion_annoyed.wav"></audio></td>
         </tr>
         <tr>
-            <td nowrap>Astonished
-            <td>
-                <audio controls="" preload="none">
-                    <source src="static/EEmotion/i had to have it._EEmotion_astonished.wav">
-                </audio>
-            </td>
+          <td>Astonished</td>
+          <td><audio controls preload="none"><source src="static/EEmotion/i had to have it._EEmotion_astonished.wav"></audio></td>
         </tr>
         <tr>
-            <td nowrap>Calm
-            <td>
-                <audio controls="" preload="none">
-                    <source src="static/EEmotion/i had to have it._EEmotion_calm.wav">
-                </audio>
-            </td>
+          <td>Calm</td>
+          <td><audio controls preload="none"><source src="static/EEmotion/i had to have it._EEmotion_calm.wav"></audio></td>
         </tr>
         <tr>
-            <td nowrap>Content
-            <td>
-                <audio controls="" preload="none">
-                    <source src="static/EEmotion/i had to have it._EEmotion_content.wav">
-                </audio>
-            </td>
+          <td>Content</td>
+          <td><audio controls preload="none"><source src="static/EEmotion/i had to have it._EEmotion_content.wav"></audio></td>
         </tr>
         <tr>
-            <td nowrap>Delighted
-            <td>
-                <audio controls="" preload="none">
-                    <source src="static/EEmotion/i had to have it._EEmotion_delighted.wav">
-                </audio>
-            </td>
+          <td>Delighted</td>
+          <td><audio controls preload="none"><source src="static/EEmotion/i had to have it._EEmotion_delighted.wav"></audio></td>
         </tr>
         <tr>
-            <td nowrap>Depressed
-            <td>
-                <audio controls="" preload="none">
-                    <source src="static/EEmotion/i had to have it._EEmotion_depressed.wav">
-                </audio>
-            </td>
+          <td>Depressed</td>
+          <td><audio controls preload="none"><source src="static/EEmotion/i had to have it._EEmotion_depressed.wav"></audio></td>
         </tr>
         <tr>
-            <td nowrap>Ease
-            <td>
-                <audio controls="" preload="none">
-                    <source src="static/EEmotion/i had to have it._EEmotion_ease.wav">
-                </audio>
-            </td>
+          <td>Ease</td>
+          <td><audio controls preload="none"><source src="static/EEmotion/i had to have it._EEmotion_ease.wav"></audio></td>
         </tr>
         <tr>
-            <td nowrap>Excited
-            <td>
-                <audio controls="" preload="none">
-                    <source src="static/EEmotion/i had to have it._EEmotion_excited.wav">
-                </audio>
-            </td>
+          <td>Excited</td>
+          <td><audio controls preload="none"><source src="static/EEmotion/i had to have it._EEmotion_excited.wav"></audio></td>
         </tr>
         <tr>
-            <td nowrap>Happy
-            <td>
-                <audio controls="" preload="none">
-                    <source src="static/EEmotion/i had to have it._EEmotion_happy.wav">
-                </audio>
-            </td>
+          <td>Happy</td>
+          <td><audio controls preload="none"><source src="static/EEmotion/i had to have it._EEmotion_happy.wav"></audio></td>
         </tr>
         <tr>
-            <td nowrap>Neutral
-            <td>
-                <audio controls="" preload="none">
-                    <source src="static/EEmotion/i had to have it._EEmotion_neutral.wav">
-                </audio>
-            </td>
+          <td>Neutral</td>
+          <td><audio controls preload="none"><source src="static/EEmotion/i had to have it._EEmotion_neutral.wav"></audio></td>
         </tr>
         <tr>
-            <td nowrap>Tired
-            <td>
-                <audio controls="" preload="none">
-                    <source src="static/EEmotion/i had to have it._EEmotion_tired.wav">
-                </audio>
-            </td>
+          <td>Tired</td>
+          <td><audio controls preload="none"><source src="static/EEmotion/i had to have it._EEmotion_tired.wav"></audio></td>
         </tr>
-        </tbody>
+      </tbody>
     </table>
-</div>
-<br><br>
-<br><br>
-<div>
-    <a name="ljspeech"><h2>Single Emotion Dataset (LJSpeech)</h2>
-    <h3>"was the prime mover,"</h3></a>
+  </section>
+
+  <!-- LJSpeech -->
+  <section id="ljspeech">
+    <h2>Single Emotion Dataset (LJSpeech)</h2>
+    <h3>"was the prime mover,"</h3>
     <hr>
     <table>
-        <tbody>
+      <tbody>
         <tr>
-            <td nowrap>Ground Truth
-            <td>
-                <audio controls="" preload="none">
-                    <source src="static/LJSpeech/LJ015-0265.wav">
-                </audio>
-            </td>
+          <td>Ground Truth</td>
+          <td><audio controls preload="none"><source src="static/LJSpeech/LJ015-0265.wav"></audio></td>
         </tr>
         <tr>
-            <td nowrap>Teacher Forced
-            <td>
-                <audio controls="" preload="none">
-                    <source src="static/LJSpeech/LJ015-0265_teacher_forced.wav">
-                </audio>
-            </td>
+          <td>Teacher Forced</td>
+          <td><audio controls preload="none"><source src="static/LJSpeech/LJ015-0265_teacher_forced.wav"></audio></td>
         </tr>
         <tr>
-            <td nowrap>Alarmed
-            <td>
-                <audio controls="" preload="none">
-                    <source src="static/LJSpeech/was the prime mover,_LJSpeech_alarmed.wav">
-                </audio>
-            </td>
+          <td>Alarmed</td>
+          <td><audio controls preload="none"><source src="static/LJSpeech/was the prime mover,_LJSpeech_alarmed.wav"></audio></td>
         </tr>
         <tr>
-            <td nowrap>Amused
-            <td>
-                <audio controls="" preload="none">
-                    <source src="static/LJSpeech/was the prime mover,_LJSpeech_amused.wav">
-                </audio>
-            </td>
+          <td>Amused</td>
+          <td><audio controls preload="none"><source src="static/LJSpeech/was the prime mover,_LJSpeech_amused.wav"></audio></td>
         </tr>
         <tr>
-            <td nowrap>Angry
-            <td>
-                <audio controls="" preload="none">
-                    <source src="static/LJSpeech/was the prime mover,_LJSpeech_angry.wav">
-                </audio>
-            </td>
+          <td>Angry</td>
+          <td><audio controls preload="none"><source src="static/LJSpeech/was the prime mover,_LJSpeech_angry.wav"></audio></td>
         </tr>
         <tr>
-            <td nowrap>Annoyed
-            <td>
-                <audio controls="" preload="none">
-                    <source src="static/LJSpeech/was the prime mover,_LJSpeech_annoyed.wav">
-                </audio>
-            </td>
+          <td>Annoyed</td>
+          <td><audio controls preload="none"><source src="static/LJSpeech/was the prime mover,_LJSpeech_annoyed.wav"></audio></td>
         </tr>
         <tr>
-            <td nowrap>Astonished
-            <td>
-                <audio controls="" preload="none">
-                    <source src="static/LJSpeech/was the prime mover,_LJSpeech_astonished.wav">
-                </audio>
-            </td>
+          <td>Astonished</td>
+          <td><audio controls preload="none"><source src="static/LJSpeech/was the prime mover,_LJSpeech_astonished.wav"></audio></td>
         </tr>
         <tr>
-            <td nowrap>Calm
-            <td>
-                <audio controls="" preload="none">
-                    <source src="static/LJSpeech/was the prime mover,_LJSpeech_calm.wav">
-                </audio>
-            </td>
+          <td>Calm</td>
+          <td><audio controls preload="none"><source src="static/LJSpeech/was the prime mover,_LJSpeech_calm.wav"></audio></td>
         </tr>
         <tr>
-            <td nowrap>Content
-            <td>
-                <audio controls="" preload="none">
-                    <source src="static/LJSpeech/was the prime mover,_LJSpeech_content.wav">
-                </audio>
-            </td>
+          <td>Content</td>
+          <td><audio controls preload="none"><source src="static/LJSpeech/was the prime mover,_LJSpeech_content.wav"></audio></td>
         </tr>
         <tr>
-            <td nowrap>Delighted
-            <td>
-                <audio controls="" preload="none">
-                    <source src="static/LJSpeech/was the prime mover,_LJSpeech_delighted.wav">
-                </audio>
-            </td>
+          <td>Delighted</td>
+          <td><audio controls preload="none"><source src="static/LJSpeech/was the prime mover,_LJSpeech_delighted.wav"></audio></td>
         </tr>
         <tr>
-            <td nowrap>Depressed
-            <td>
-                <audio controls="" preload="none">
-                    <source src="static/LJSpeech/was the prime mover,_LJSpeech_depressed.wav">
-                </audio>
-            </td>
+          <td>Depressed</td>
+          <td><audio controls preload="none"><source src="static/LJSpeech/was the prime mover,_LJSpeech_depressed.wav"></audio></td>
         </tr>
         <tr>
-            <td nowrap>Ease
-            <td>
-                <audio controls="" preload="none">
-                    <source src="static/LJSpeech/was the prime mover,_LJSpeech_ease.wav">
-                </audio>
-            </td>
+          <td>Ease</td>
+          <td><audio controls preload="none"><source src="static/LJSpeech/was the prime mover,_LJSpeech_ease.wav"></audio></td>
         </tr>
         <tr>
-            <td nowrap>Excited
-            <td>
-                <audio controls="" preload="none">
-                    <source src="static/LJSpeech/was the prime mover,_LJSpeech_excited.wav">
-                </audio>
-            </td>
+          <td>Excited</td>
+          <td><audio controls preload="none"><source src="static/LJSpeech/was the prime mover,_LJSpeech_excited.wav"></audio></td>
         </tr>
         <tr>
-            <td nowrap>Happy
-            <td>
-                <audio controls="" preload="none">
-                    <source src="static/LJSpeech/was the prime mover,_LJSpeech_happy.wav">
-                </audio>
-            </td>
+          <td>Happy</td>
+          <td><audio controls preload="none"><source src="static/LJSpeech/was the prime mover,_LJSpeech_happy.wav"></audio></td>
         </tr>
         <tr>
-            <td nowrap>Neutral
-            <td>
-                <audio controls="" preload="none">
-                    <source src="static/LJSpeech/was the prime mover,_LJSpeech_neutral.wav">
-                </audio>
-            </td>
+          <td>Neutral</td>
+          <td><audio controls preload="none"><source src="static/LJSpeech/was the prime mover,_LJSpeech_neutral.wav"></audio></td>
         </tr>
         <tr>
-            <td nowrap>Tired
-            <td>
-                <audio controls="" preload="none">
-                    <source src="static/LJSpeech/was the prime mover,_LJSpeech_tired.wav">
-                </audio>
-            </td>
+          <td>Tired</td>
+          <td><audio controls preload="none"><source src="static/LJSpeech/was the prime mover,_LJSpeech_tired.wav"></audio></td>
         </tr>
-        </tbody>
+      </tbody>
     </table>
+  </section>
+
 </div>
-<br><br>
 </body>
 </html>
